@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+.fi-body { background-color: #0a0e1a !important; }
+.fi-main { background-color: #0a0e1a !important; }
+.fi-sidebar-nav { background-color: #080f20 !important; }
+.fi-topbar-nav { background-color: rgba(8,15,32,0.95) !important; }
+.fi-sidebar { background-color: #080f20 !important; }
+.fi-page { background-color: #0a0e1a !important; }
