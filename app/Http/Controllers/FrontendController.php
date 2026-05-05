@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota;
+<<<<<<< HEAD
+=======
+use App\Models\Kas;
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
 use App\Models\Event;
 use App\Models\Saran;
 use App\Models\Produk;        // ← TAMBAHAN
@@ -15,6 +19,11 @@ class FrontendController extends Controller
     {
         $tahun = date('Y');
 
+<<<<<<< HEAD
+=======
+        $statistikKas = Kas::getStatistikBulanan($tahun);
+
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
         $events = Event::where('unggulan', true)
             ->orderBy('tanggal_mulai', 'asc')
             ->limit(4)
@@ -22,6 +31,14 @@ class FrontendController extends Controller
 
         $totalAnggota = Anggota::where('status', 'aktif')->count();
 
+<<<<<<< HEAD
+=======
+        $totalKasBulanIni = Kas::where('bulan', date('n'))
+            ->where('tahun', $tahun)
+            ->where('jenis', 'masuk')
+            ->where('status', 'lunas')
+            ->sum('nominal');
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
 
         $totalEvent = Event::whereYear('tanggal_mulai', $tahun)->count();
 
@@ -37,14 +54,22 @@ class FrontendController extends Controller
         ];
 
         return view('frontend.home', compact(
+<<<<<<< HEAD
             'events',
             'totalAnggota',
+=======
+            'statistikKas',
+            'events',
+            'totalAnggota',
+            'totalKasBulanIni',
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
             'totalEvent',
             'struktur',
             'produkUnggulan'  // ← TAMBAHAN
         ));
     }
 
+<<<<<<< HEAD
     // Halaman Struktur Organisasi
     public function struktur()
     {
@@ -52,6 +77,33 @@ class FrontendController extends Controller
     }
 
     // ── Halaman Lapak ─────────────────────────────────────────────────────────
+=======
+    // Endpoint API untuk statistik kas (dipakai AJAX di frontend)
+    public function apiKasStatistik()
+    {
+        $tahun = date('Y');
+        $data = Kas::getStatistikBulanan($tahun);
+
+        $totalMasuk = Kas::where('tahun', $tahun)
+            ->where('jenis', 'masuk')
+            ->where('status', 'lunas')
+            ->sum('nominal');
+
+        $totalKeluar = Kas::where('tahun', $tahun)
+            ->where('jenis', 'keluar')
+            ->sum('nominal');
+
+        return response()->json([
+            'statistik' => $data,
+            'total_masuk' => (float) $totalMasuk,
+            'total_keluar' => (float) $totalKeluar,
+            'saldo' => (float) ($totalMasuk - $totalKeluar),
+            'updated_at' => now()->toIso8601String(),
+        ]);
+    }
+
+    // ── TAMBAHAN: Halaman Lapak ────────────────────────────────────────────────
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
     public function lapak(Request $request)
     {
         $kategori = $request->get('kategori', 'semua');

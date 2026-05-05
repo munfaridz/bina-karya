@@ -20,18 +20,27 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
 {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
     public function panel(Panel $panel): Panel
     {
         return $panel
             ->default()
             ->id('admin')
             ->path('admin')
+<<<<<<< HEAD
             ->login(\App\Filament\Pages\Auth\Login::class)
+=======
+            ->login()
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
             ->brandName('Karangtaruna Bina Karya')
             ->brandLogo(asset('images/logo.jpg'))
             ->brandLogoHeight('2rem')
             ->favicon(asset('images/logo.jpg'))
             ->colors([
+<<<<<<< HEAD
                 'primary' => Color::Cyan,
                 'gray'    => Color::Slate,
             ])
@@ -46,10 +55,16 @@ class AdminPanelProvider extends PanelProvider
                 'panels::body.start',
                 fn () => view('filament.custom-login-styles')
             )
+=======
+    'primary' => Color::Blue,
+    'gray' => Color::Slate,
+            ])
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+<<<<<<< HEAD
                 \App\Filament\Pages\Pengaturan::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
@@ -57,6 +72,14 @@ class AdminPanelProvider extends PanelProvider
                 \App\Filament\Widgets\DashboardStatsWidget::class,
                 \App\Filament\Widgets\LapakStatsWidget::class,
             ])
+=======
+            ])
+            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->widgets([
+                  \App\Filament\Widgets\DashboardStatsWidget::class,
+                  \App\Filament\Widgets\LapakStatsWidget::class,
+           ])
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -67,9 +90,18 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+<<<<<<< HEAD
             ])
             ->authMiddleware([
                 Authenticate::class,
+=======
+                
+            ])
+            ->authMiddleware([
+                Authenticate::class,
+                
+            
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
             ]);
     }
 }

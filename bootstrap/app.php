@@ -10,8 +10,13 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+<<<<<<< HEAD
 ->withMiddleware(function (Middleware $middleware) {
     $middleware->append(\App\Http\Middleware\TrustProxies::class);
+=======
+    ->withMiddleware(function (Middleware $middleware): void {
+        //
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

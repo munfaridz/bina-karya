@@ -6,7 +6,10 @@
 
 <!-- HERO -->
 <section class="hero">
+<<<<<<< HEAD
     
+=======
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
     <div class="hero-inner">
         <div class="hero-logo">
             <img src="{{ asset('images/logo.jpg') }}" alt="Logo">
@@ -50,12 +53,30 @@
             <div class="lbl">Total Anggota Aktif</div>
         </div>
         <div class="stat-card">
+<<<<<<< HEAD
+=======
+            
+<div class="val">
+@if($totalKasBulanIni >= 1000000)
+    Rp {{ number_format($totalKasBulanIni / 1000000, 1, ',', '.') }}jt
+@elseif($totalKasBulanIni >= 1000)
+    Rp {{ number_format($totalKasBulanIni / 1000, 0, ',', '.') }}rb
+@else
+    Rp {{ number_format($totalKasBulanIni, 0, ',', '.') }}
+@endif
+</div>
+            <div class="lbl">Kas Bulan Ini</div>
+        
+        </div>
+        <div class="stat-card">
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
             <div class="val">{{ $totalEvent }}</div>
             <div class="lbl">Event Tahun {{ date('Y') }}</div>
         </div>
     </div>
 </section>
 
+<<<<<<< HEAD
 
 <!-- STRUKTUR ORGANISASI — ringkas, link ke halaman penuh -->
 <section class="section bg-darker" id="struktur">
@@ -76,6 +97,229 @@
         </a>
         <div style="margin-top:10px; font-size:12px; color:rgba(147,197,253,0.4);">
             Termasuk 8 seksi dengan seluruh anggota
+=======
+<!-- KAS STATISTIK -->
+<section class="section bg-dark" id="kas">
+    <h2 class="section-title">Statistik Kas Bulanan {{ date('Y') }}</h2>
+    <div class="kas-chart-wrap">
+        <h3>Pemasukan vs Pengeluaran (Rp)</h3>
+        <canvas id="kasChart" height="100"></canvas>
+        <p style="font-size:11px;color:#94a3b8;margin-top:12px;text-align:right;" id="last-update">
+            Terakhir diperbarui: {{ now()->format('d/m/Y H:i') }}
+        </p>
+    </div>
+</section>
+
+<!-- STRUKTUR ORGANISASI -->
+<section class="section bg-darker">
+    <h2 class="section-title">Struktur Organisasi</h2>
+    <div class="org-wrap">
+        <div class="org-tree">
+
+            {{-- LEVEL 1: KETUA --}}
+            <div class="org-level-label">Ketua</div>
+            <div class="org-row">
+                <div class="org-card org-card--ketua">
+                    <div class="org-foto">
+                        @if(file_exists(public_path('images/struktur/aji.jpg')))
+                            <img src="{{ asset('images/struktur/aji.jpg') }}" alt="AJI">
+                        @else
+                            <div class="org-foto-placeholder">A</div>
+                        @endif
+                    </div>
+                    <div class="org-name">AJI</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+
+            {{-- LEVEL 2: WAKIL KETUA --}}
+            <div class="org-level-label">Wakil Ketua</div>
+            <div class="org-row">
+                @foreach([
+                    ['nama'=>'DINO',  'label'=>'Wakil Ketua RT 01', 'foto'=>'dino.jpg'],
+                    ['nama'=>'GANA',  'label'=>'Wakil Ketua RT 02', 'foto'=>'gana.jpg'],
+                    ['nama'=>'FARID', 'label'=>'Wakil Ketua RT 06', 'foto'=>'farid.jpg'],
+                ] as $p)
+                <div class="org-card">
+                    <div class="org-foto">
+                        @if(file_exists(public_path('images/struktur/'.$p['foto'])))
+                            <img src="{{ asset('images/struktur/'.$p['foto']) }}" alt="{{ $p['nama'] }}">
+                        @else
+                            <div class="org-foto-placeholder">{{ substr($p['nama'],0,1) }}</div>
+                        @endif
+                    </div>
+                    <div class="org-sublabel">{{ $p['label'] }}</div>
+                    <div class="org-name">{{ $p['nama'] }}</div>
+                </div>
+                @endforeach
+            </div>
+            <div class="org-connector"></div>
+
+{{-- LEVEL 3: SEKRETARIS & BENDAHARA --}}
+<div class="org-level-label">Sekretaris &amp; Bendahara</div>
+<div class="org-row">
+    @foreach([
+        ['nama'=>'LINTANG', 'label'=>'Sekretaris', 'foto'=>'lintang.jpg'],
+        ['nama'=>'CELSI',   'label'=>'Sekretaris', 'foto'=>'celsi.jpg'],
+        ['nama'=>'DIAN',    'label'=>'Bendahara',  'foto'=>'dian.jpg'],
+        ['nama'=>'DEVI',    'label'=>'Bendahara',  'foto'=>'devi.jpg'],
+    ] as $p)
+    <div class="org-card">
+        <div class="org-foto">
+            @if(file_exists(public_path('images/struktur/'.$p['foto'])))
+                <img src="{{ asset('images/struktur/'.$p['foto']) }}" alt="{{ $p['nama'] }}">
+            @else
+                <div class="org-foto-placeholder">{{ substr($p['nama'],0,1) }}</div>
+            @endif
+        </div>
+        <div class="org-sublabel">{{ $p['label'] }}</div>
+        <div class="org-name">{{ $p['nama'] }}</div>
+    </div>
+    @endforeach
+</div>
+            <div class="org-connector"></div>
+
+            {{-- LEVEL 4 & 5: SEKSI dengan cabang anggota --}}
+            @php
+            $semuaSeksi = [
+                [
+                    'seksi'   => 'Seksi Sinoman',
+                    'ketua'   => ['nama'=>'PUTRA',  'foto'=>'putra.jpg'],
+                    'anggota' => [
+                        ['nama'=>'GANI',   'foto'=>'gani.jpg'],
+                        ['nama'=>'ANDIKA', 'foto'=>'andika.jpg'],
+                        ['nama'=>'ANAS',   'foto'=>'anas.jpg'],
+                        ['nama'=>'BAGAS',  'foto'=>'bagas.jpg'],
+                        ['nama'=>'HESTI',  'foto'=>'hesti.jpg'],
+                    ],
+                ],
+                [
+                    'seksi'   => 'Seksi Agama',
+                    'ketua'   => ['nama'=>'ADIT',   'foto'=>'adit.jpg'],
+                    'anggota' => [
+                        ['nama'=>'REFLIN', 'foto'=>'reflin.jpg'],
+                        ['nama'=>'KHARIS', 'foto'=>'kharis.jpg'],
+                        ['nama'=>'VINA',   'foto'=>'vina.jpg'],
+                        ['nama'=>'ZAHWA',  'foto'=>'zahwa.jpg'],
+                    ],
+                ],
+                [
+                    'seksi'   => 'Seksi Humas',
+                    'ketua'   => ['nama'=>'RIZAL',  'foto'=>'rizal.jpg'],
+                    'anggota' => [
+                        ['nama'=>'RIAN',         'foto'=>'rian.jpg'],
+                        ['nama'=>'ALIF',         'foto'=>'alif.jpg'],
+                        ['nama'=>'YAYAH',        'foto'=>'yayah.jpg'],
+                        ['nama'=>'BAYU',         'foto'=>'bayu.jpg'],
+                        ['nama'=>'GALIH',        'foto'=>'galih.jpg'],
+                        ['nama'=>'FITRI',        'foto'=>'fitri.jpg'],
+                        ['nama'=>'ALDI',         'foto'=>'aldi.jpg'],
+                        ['nama'=>'RIDHO',        'foto'=>'ridho.jpg'],
+                        ['nama'=>'NATASYA AP',   'foto'=>'natasya_ap.jpg'],
+                    ],
+                ],
+                [
+                    'seksi'   => 'Seksi Kesenian',
+                    'ketua'   => ['nama'=>'ABDUL',  'foto'=>'abdul.jpg'],
+                    'anggota' => [
+                        ['nama'=>'TEGAR',     'foto'=>'tegar.jpg'],
+                        ['nama'=>'IQBAL',     'foto'=>'iqbal.jpg'],
+                        ['nama'=>'NIA',       'foto'=>'nia.jpg'],
+                        ['nama'=>'NATASYA AZ','foto'=>'natasya_az.jpg'],
+                    ],
+                ],
+                [
+                    'seksi'   => 'Seksi Olahraga',
+                    'ketua'   => ['nama'=>'RAYHAN', 'foto'=>'rayhan.jpg'],
+                    'anggota' => [
+                        ['nama'=>'GUNTUR', 'foto'=>'guntur.jpg'],
+                        ['nama'=>'WULAN',  'foto'=>'wulan.jpg'],
+                        ['nama'=>'SISKA',  'foto'=>'siska.jpg'],
+                    ],
+                ],
+                [
+                    'seksi'   => 'Seksi Dokumentasi',
+                    'ketua'   => ['nama'=>'RISKI',  'foto'=>'riski.jpg'],
+                    'anggota' => [
+                        ['nama'=>'FIKA', 'foto'=>'fika.jpg'],
+                        ['nama'=>'TIA',  'foto'=>'tia.jpg'],
+                    ],
+                ],
+                [
+                    'seksi'   => 'Seksi Dekorasi',
+                    'ketua'   => ['nama'=>'REVAL',  'foto'=>'reval.jpg'],
+                    'anggota' => [
+                        ['nama'=>'REVANO', 'foto'=>'revano.jpg'],
+                        ['nama'=>'ZAKI',   'foto'=>'zaki.jpg'],
+                    ],
+                ],
+                [
+                    'seksi'   => 'Seksi Keamanan',
+                    'ketua'   => ['nama'=>'TEGUH',  'foto'=>'teguh.jpg'],
+                    'anggota' => [
+                        ['nama'=>'DEDI',  'foto'=>'dedi.jpg'],
+                        ['nama'=>'SURYA', 'foto'=>'surya.jpg'],
+                        ['nama'=>'CAHYO', 'foto'=>'cahyo.jpg'],
+                    ],
+                ],
+            ];
+            @endphp
+
+            <div class="org-level-label">Seksi</div>
+            <div class="org-seksi-grid">
+                @foreach($semuaSeksi as $seksi)
+                <div class="org-seksi-wrap">
+
+                    {{-- Header Seksi --}}
+                    <div class="org-seksi-header">{{ $seksi['seksi'] }}</div>
+
+                    {{-- Kartu Ketua --}}
+                    <div class="org-seksi-ketua-wrap">
+                        <div class="org-card org-card--ketua-seksi">
+                            <div class="org-foto org-foto--md">
+                                @if(file_exists(public_path('images/struktur/'.$seksi['ketua']['foto'])))
+                                    <img src="{{ asset('images/struktur/'.$seksi['ketua']['foto']) }}" alt="{{ $seksi['ketua']['nama'] }}">
+                                @else
+                                    <div class="org-foto-placeholder" style="font-size:16px">{{ substr($seksi['ketua']['nama'],0,1) }}</div>
+                                @endif
+                            </div>
+                            <div class="org-badge-ketua">★ Ketua</div>
+                            <div class="org-name" style="font-size:11px">{{ $seksi['ketua']['nama'] }}</div>
+                        </div>
+                    </div>
+
+                    {{-- Garis ke bawah dari ketua --}}
+                    <div class="org-branch-line-v"></div>
+
+                    {{-- Garis horizontal penghubung semua anggota --}}
+                    <div class="org-branch-h-wrap">
+                        <div class="org-branch-h-line" style="width: calc({{ count($seksi['anggota']) }} * 72px - 12px); max-width:100%"></div>
+                    </div>
+
+                    {{-- Kartu Anggota --}}
+                    <div class="org-anggota-row">
+                        @foreach($seksi['anggota'] as $anggota)
+                        <div class="org-anggota-wrap">
+                            <div class="org-branch-line-v-sm"></div>
+                            <div class="org-card org-card--anggota">
+                                <div class="org-foto org-foto--sm">
+                                    @if(file_exists(public_path('images/struktur/'.$anggota['foto'])))
+                                        <img src="{{ asset('images/struktur/'.$anggota['foto']) }}" alt="{{ $anggota['nama'] }}">
+                                    @else
+                                        <div class="org-foto-placeholder" style="font-size:12px">{{ substr($anggota['nama'],0,1) }}</div>
+                                    @endif
+                                </div>
+                                <div class="org-name" style="font-size:10px;margin-top:4px">{{ $anggota['nama'] }}</div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                </div>
+                @endforeach
+            </div>
+
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
         </div>
     </div>
 </section>
@@ -201,4 +445,89 @@
 
     </div>
 </section>
+<<<<<<< HEAD
 @endsection
+=======
+
+@endsection
+
+@push('scripts')
+<script>
+// ========================================
+// CHART KAS — Data dari PHP (server-side)
+// ========================================
+const statistikData = @json($statistikKas);
+
+const labels = statistikData.map(d => d.bulan);
+const dataMasuk = statistikData.map(d => d.masuk);
+const dataKeluar = statistikData.map(d => d.keluar);
+
+const ctx = document.getElementById('kasChart').getContext('2d');
+const kasChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Kas Masuk',
+                data: dataMasuk,
+                backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                borderColor: '#1d4ed8',
+                borderWidth: 1.5,
+                borderRadius: 6,
+            },
+            {
+                label: 'Kas Keluar',
+                data: dataKeluar,
+                backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                borderColor: '#b91c1c',
+                borderWidth: 1.5,
+                borderRadius: 6,
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) {
+                        return ' Rp ' + ctx.raw.toLocaleString('id-ID');
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(v) {
+                        return 'Rp ' + (v / 1000).toFixed(0) + 'rb';
+                    }
+                }
+            }
+        }
+    }
+});
+
+// ========================================
+// AUTO-REFRESH KAS setiap 30 detik
+// ========================================
+setInterval(function() {
+    fetch('/api/kas-statistik')
+        .then(res => res.json())
+        .then(data => {
+            kasChart.data.datasets[0].data = data.statistik.map(d => d.masuk);
+            kasChart.data.datasets[1].data = data.statistik.map(d => d.keluar);
+            kasChart.update();
+
+            const d = new Date(data.updated_at);
+            document.getElementById('last-update').textContent =
+                'Terakhir diperbarui: ' + d.toLocaleDateString('id-ID') + ' ' + d.toLocaleTimeString('id-ID');
+        })
+        .catch(err => console.log('Gagal refresh kas:', err));
+}, 30000);
+</script>
+@endpush
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545

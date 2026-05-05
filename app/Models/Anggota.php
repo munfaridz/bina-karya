@@ -23,4 +23,21 @@ class Anggota extends Model
         'tanggal_lahir' => 'date',
     ];
 
+<<<<<<< HEAD
+=======
+    public function kas()
+    {
+        return $this->hasMany(Kas::class);
+    }
+
+    public function getUmurAttribute(): int
+    {
+        return $this->tanggal_lahir->age;
+    }
+
+    public function getTotalKasAttribute(): float
+    {
+        return $this->kas()->where('status', 'lunas')->sum('nominal');
+    }
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
 }

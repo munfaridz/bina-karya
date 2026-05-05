@@ -12,7 +12,11 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->date('tanggal_lahir');
+<<<<<<< HEAD
             $table->enum('divisi', ['ketua', 'wakil', 'sekretaris', 'bendahara', 'Sosial', 'Olahraga', 'Seni', 'Pendidikan', 'Ekonomi', 'Lingkungan']);
+=======
+            $table->enum('divisi', ['Sosial', 'Olahraga', 'Seni', 'Pendidikan', 'Ekonomi', 'Lingkungan']);
+>>>>>>> e326b0ef4e7abd0261adf1ce23e56900fcc42545
             $table->enum('status', ['aktif', 'tidak_aktif'])->default('aktif');
             $table->string('no_hp')->nullable();
             $table->text('alamat')->nullable();
