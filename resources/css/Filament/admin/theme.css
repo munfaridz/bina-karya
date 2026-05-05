@@ -1,0 +1,46 @@
+/* ══════════════════════════════════
+   FIX 1: LOGIN PAGE
+   ══════════════════════════════════ */
+
+/* Sembunyikan panel kiri biru Filament */
+.fi-simple-main > .fi-simple-main-ctn > div[class*="grid"],
+.fi-simple-main > .fi-simple-main-ctn > .grid,
+[class*="fi-simple-layout"] > * > * > div:first-child:not(.fi-simple-page) {
+    display: none !important;
+}
+
+.fi-simple-layout {
+    background: linear-gradient(135deg, #0a0e1a 0%, #0f1729 60%, #0a0e1a 100%) !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.fi-simple-main {
+    background: transparent !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    padding: 24px 16px !important;
+    display: block !important;
+}
+
+.fi-simple-main-ctn {
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+.fi-simple-page {
+    background: #111827 !important;
+    border: 1px solid rgba(59,130,246,0.2) !important;
+    border-radius: 16px !important;
+    padding: 40px 36px !important;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+}
